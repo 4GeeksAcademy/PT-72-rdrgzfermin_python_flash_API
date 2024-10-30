@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 todos = [
@@ -16,17 +16,10 @@ def add_new_todo():
     todos.append(request_body)
     return jsonify(todos)
 
-
-
-
-
-
-
-
-
-
-
-
+@app.route('/todos/<int:position>', methods=['DELETE'])
+def delete_todo(position):
+    todos.pop(position)
+    return jsonify(todos)
 
 
 
